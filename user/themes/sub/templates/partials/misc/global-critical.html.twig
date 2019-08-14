@@ -1,0 +1,59 @@
+{% set preloader = theme_var('preloader') ? '1' : '0' %} 
+
+<style>
+{% if preloader == '1' %}
+/* PRELOADER OPTION */
+.preloader {
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: #ffffff;
+    height: 100%; 
+    width: 100%;
+    justify-content: center; 
+    transition: all ease .7s; 
+}
+.preloader span {
+    border: 5px solid #d0d0d0;
+      animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+      border-top: 5px solid #2474A9;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+}
+.is-page-loaded .preloader {
+    opacity: 0;
+    visibility: hidden;
+    transition: all ease .7s;
+}
+/* END PRELOADER */
+
+{% endif %}
+
+
+/* INSERT YOUR GLOBAL CRITICAL CSS HERE */
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+img {
+    max-width: 100%; 
+    height: auto;
+}
+
+/* END GLOBAL CRITICAL */ 
+
+
+/* BLOCKS */ 
+
+
+/* ANIMATIONS */
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+</style>

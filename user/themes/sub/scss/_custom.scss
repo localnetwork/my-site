@@ -1,0 +1,40 @@
+.btn-default {
+    border-radius: 2px;
+    transition: all ease .3s; 
+    border: 1px solid;
+    &:hover, &:focus {
+        background-color: $yellow;
+        transition: all ease .3s;
+        border: 1px solid transparent !important; 
+    }
+}   
+
+
+.has-validator {
+    label.error {
+        font-size: 15px;
+        color: red;  
+        display: inline-block;
+        margin: 5px 0 0;
+        &::before {
+            content: "\f06a";
+            font-family: Fontawesome;
+            margin-right: 5px; 
+        }
+    }
+} 
+
+
+.form-control {
+    min-height: 45px;
+    border-radius: 0;
+} 
+
+
+span.required {
+    color: red; 
+}
+
+.captcha .form-label {
+    display: none;
+} 

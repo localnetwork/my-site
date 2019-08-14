@@ -1,0 +1,48 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set page_class = 'node-type-articles' %}
+
+
+{% block header %}
+ {# EMPTY HEADER #}
+{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <aside class="col-12 col-md-2 bg-light">
+            <div class="pagination h-100 p-2 d-none d-md-block"> 
+                
+                {% set countNotEmpty = 0 %}
+                <ul class="list-unstyled">
+                    {% for child in page.find('/articles').children %}
+                        {% set currentURL = page.url %}
+                        {% set childURL = child.url %}
+                        {% set countNotEmpty = countNotEmpty + 1 %}
+                        <li class="item-title menuparent d-flex align-items-center {{ currentURL == childURL ? "parent-active" : "parent-not-active" }}">
+                            <span class="if-count d-none d-md-block mr-1">{{ countNotEmpty }}:</span>
+                            <a class="{{ currentURL == childURL ? "active" : "not-active" }}" href="{{ child.url }}"> {{ child.title }}</a>
+                        </li>
+                    
+                    {% endfor %} 
+                </ul>
+            </div>
+        </aside>
+        
+        <div class="main-container col-12 col-md-10">
+            {# CREATING HEADER FOR THIS CONTENT TYPE ONLY #}
+            
+            
+            <header class="header">
+                {% include 'partials/navigation.html.twig' %}
+            </header>
+            
+            {# END HEADER #} 
+            
+            <h1 class="page-header page-title">{{ page.header.title }} </h1>
+            <div class="">
+                {{ page.content }}
+            </div>
+        </div> 
+    </div>
+{% endblock %}

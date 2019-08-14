@@ -1,0 +1,8 @@
+<p>Submission date: {{ 'now'|date('d/m/Y h:i a') }}<br />
+Submission values are:</p>
+
+{% for field in form.fields if field.type != 'captcha' %}
+    <p>{{ field.label }}: {{ string(form.value(field.name)|e) }}</p>
+{% endfor %}
+
+<p>-- This is an automated message. Please DO NOT reply ---</p>

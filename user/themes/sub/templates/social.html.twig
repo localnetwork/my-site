@@ -1,0 +1,13 @@
+{% set social = page.find('/social') %}
+
+
+<ul class="media-links list-unstyled p0 m0 d-flex flex-wrap fs25 align-items-center justify-content-lg-end">
+
+{% for social in social.header.social %} 
+    <li>
+        <a href="{{ social.iconURL }}" target="_blank"><i class="{{ social.icon }}"></i></a>
+    </li>
+{% endfor %}
+
+
+</ul>

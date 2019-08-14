@@ -1,0 +1,11 @@
+email: system-admin@redstarfishwebdesign.com
+fullname: 'Diome Nike'
+title: 'Web Developer'
+state: enabled
+access:
+  admin:
+    login: true
+    super: true
+  site:
+    login: true
+hashed_password: $2y$10$llp21xAbDuDvPWx5cP75yuIkgTZogmkGDytvmfGah.7cSL/8DQKoG

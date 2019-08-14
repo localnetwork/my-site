@@ -1,0 +1,35 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set page_class = "page-listing" %}
+ 
+
+{% block content %}
+<div class="container">
+<h1 class="page-header">{{ page.title }}</h1>
+
+
+
+    <div class="item-list row">
+        {% for child in page.collection %}
+            <div class="item col-md-4">
+                <div class="item-wrapper">
+                    <a href="{{ child.url}}">
+                        <div class="item__image">
+                            {% set childImage = child.media.images|first %}
+                            
+                            <img src="{{ childImage.cropZoom(350,210).url }}">
+                        </div>
+                        <div class="item-details">
+                            <h2 class="item__title">{{ child.title }}</h2>
+                            <div class="item__description">
+                                {{ child.content|slice(0, 50) }}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}   
+    </div>
+</div>
+ 
+{% endblock %}

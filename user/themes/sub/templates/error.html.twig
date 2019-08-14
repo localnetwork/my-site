@@ -1,0 +1,56 @@
+{#{% extends 'partials/base.html.twig' %}#}
+{#{% block aboveFold %}#}
+{#    {% do assets.addInlineCss('h1{color: red;}') %}#}
+{#{% endblock %}#}
+{#{% block content %}#}
+{#	<div class="container">#}
+{#    <article class="text-center">#}
+{#		<h1>{{ page.header.title }} </h1>#}
+{#		<div class="field-body">#}
+{#		    <p>#}
+{#    			{{ page.content|raw }}#}
+{#		    </p>#}
+{#		</div>#}
+{#	</article>#}
+{#	</div>#}
+{#{% endblock %}#}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Page not found!</title>
+  <style>
+    * { box-sizing: border-box; }
+  body { font: 20px Helvetica, sans-serif; color: #333; text-align: center; padding: 30px; display: flex; align-items: center; justify-content: center; flex-flow: column; min-height: 100vh; margin: 0;}
+  h1 { margin: 0 0 30px; font-size: 40px; }
+  article { display: block; text-align: left; max-width: 650px; width: 100%; margin: 0 auto; }
+  a { color: #dc8100; text-decoration: none; }
+  a:hover { color: #333; text-decoration: none; }
+</style>
+  {% set favicon = theme_var(favicon ? 'favicon' : 'favicon') %} 
+    
+    {% if favicon %}
+    
+    {% set favicon_file = (favicon|first).name %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('theme://favicon/' ~ favicon_file)  }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('theme://favicon/' ~ favicon_file)  }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('theme://favicon/' ~ favicon_file)  }}">
+    {% else %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('theme://apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('theme://favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('theme://favicon-16x16.png') }}">
+    {% endif %}
+</head>
+<body>
+<article>
+  <h1>Page not found!</h1>
+  <div>
+    <p>The page you're looking for could not be found.</p>
+    <a href="/">← Back to homepage</a>
+  </div>
+</article>
+
+</body>
+</html>

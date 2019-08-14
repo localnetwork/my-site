@@ -1,0 +1,54 @@
+{% set backTop = theme_var('header.toTop.arrowStatus') ? 'enabled' : 'disabled' %} 
+{% set backColor = theme_var('header.toTop.color') %} 
+
+{% if backTop == 'enabled' %}
+
+    <div id="backTop" class="back-to-top" style="cursor: pointer;"> 
+    </div> 
+    
+    {# STYLESHEET #}
+    
+    {% block aboveFold %}
+        <style>
+            #backTop {
+                position: fixed;
+                bottom: 30px;
+                right: 20px; 
+                z-index: 999;
+                width: 50px;
+                height: 50px; 
+                border-radius: 3px; 
+                background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIj8+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDQ3Ny4xNzUgNDc3LjE3NSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgNDc3LjE3NSA0NzcuMTc1OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjUxMnB4IiBoZWlnaHQ9IjUxMnB4Ij48ZyB0cmFuc2Zvcm09Im1hdHJpeCg2LjEyMzIzZS0xNyAxIC0xIDYuMTIzMjNlLTE3IDQ3Ny4xNzUgLTIuODQyMTdlLTE0KSI+PGc+Cgk8cGF0aCBkPSJNMTQ1LjE4OCwyMzguNTc1bDIxNS41LTIxNS41YzUuMy01LjMsNS4zLTEzLjgsMC0xOS4xcy0xMy44LTUuMy0xOS4xLDBsLTIyNS4xLDIyNS4xYy01LjMsNS4zLTUuMywxMy44LDAsMTkuMWwyMjUuMSwyMjUgICBjMi42LDIuNiw2LjEsNCw5LjUsNHM2LjktMS4zLDkuNS00YzUuMy01LjMsNS4zLTEzLjgsMC0xOS4xTDE0NS4xODgsMjM4LjU3NXoiIGRhdGEtb3JpZ2luYWw9IiMwMDAwMDAiIGNsYXNzPSJhY3RpdmUtcGF0aCIgZGF0YS1vbGRfY29sb3I9IiMwMDAwMDAiIGZpbGw9IiNGRkZGRkYiLz4KPC9nPjwvZz4gPC9zdmc+Cg==');
+                background-size: 50%;
+                background-position: center;
+                background-repeat: no-repeat; 
+                opacity: 0;
+                visibility: hidden;
+                display: block;
+                transition: all ease .3s; 
+                {% if backColor != '' %}
+                    background-color: {{ backColor }};
+                {% else %}
+                
+                    background-color: #333; 
+                {% endif %}
+            } 
+            
+            #backTop.show {
+                visibility: inherit;
+                transition: all ease .3s;
+                opacity: .7;
+            }
+        </style>
+    {% endblock %}
+
+    
+    {# SCRIPT #}
+    
+    {% block bottom %}
+
+    {% do assets.addJs('theme://js/backtop.js', {'priority':99, 'loading':'defer'}) %}
+    {% endblock %}
+{% else %}
+    <div arrow-disabled="arrow-disabled"></div>
+{% endif %}

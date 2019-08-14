@@ -1,0 +1,53 @@
+Last backup process summary:
+
+Run In Test Mode: 
+Current Scope: pages
+Backup Scopes: admin, defaults, config, pages, user, media, images, audio, video, log, plugins, themes, imagecache, cache, data, system, purge, purgeall, purgepartial, purgetests, purgepages, purgeimages, purgemedia, purgethemes, purgedata, purgeplugins, purgeconfig, purgesystem, purgefailed
+Ignore Top Level: backup, cache, images, logs, tmp
+Ignore Folders: .git, .svn, .hg, .idea, node_modules
+Ignore File Types: 
+Site Ignore Top Level: 
+Site Ignore Folders: 
+Add As Empty Folders: 
+Restrict File Types: 
+Multiple Paths: 
+Intersect Site Top Levels: 
+Intersect Site Ignore Folders: 
+Force Add As Empty: 
+Log Backup: 
+Site Backup: 
+Process Timeout: 600
+Zip File Status: success
+Assumed Ratio For Tests: 1.2
+Bytes Excluded Raw: 0
+Bytes Excluded: 0B
+Files Excluded: 0
+Files To Zip: 0
+Bytes To Zip Raw: 2553362
+Bytes To Zip: 2.44MB
+Zipped Bytes Raw: 2544707
+Zipped Bytes: 2.43MB
+Compression Ratio: 1.0034011774244
+Zip Savings: 0.34
+Excluded Path List: 
+Backup Starttime Raw: 1562230291.2581
+Backup Endtime Raw: 1562230292.3019
+Backup Duration Raw: 1.0438079833984
+Remaining Timeout Raw: 598.9561920166
+Duration Before Save Raw: 0
+Backup Duration: 1.04s
+Remaining Timeout: 598.96s
+Duration Before Save: 
+Keep Days: 0
+Backup Path: /home/prestigelabelsco/public_html/backup
+Storage Capacity Raw: 0
+Capacity Used Raw: 0
+Storage Files Deleted: 0
+Storaged Purged Bytes Raw: 0
+Storage Files Exceeded Max Days: 0
+Storage Files Exceeded Max Capacity: 0
+Storage Last Check Raw: 1562230291
+Storage Capacity: 0B
+Capacity Used: 0B
+Storage Purged Bytes: 0B
+Storage Last Check: 04/07/2019 08:51:31

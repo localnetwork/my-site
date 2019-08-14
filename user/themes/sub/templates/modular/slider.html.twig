@@ -1,0 +1,11 @@
+
+<section class="block-slider" >
+    <div class="block-wrapper">
+        {% set images = page.media.images %} 
+        {% for img in images %}
+        <div class="item"> 
+            <img width="100%" src="{{ img.cropZoom(10,10).url }}" data-lazy-srcset="{{ img.cropZoom(767,400).url }} 767w, {{ img.cropZoom(991,600).url }} 991w, {{ img.cropZoom(1920,700).url }} 1920w"> 
+        </div>
+        {% endfor %} 
+    </div>
+</section> 

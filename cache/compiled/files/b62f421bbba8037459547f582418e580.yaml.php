@@ -1,0 +1,33 @@
+<?php
+return [
+    '@class' => 'Grav\\Common\\File\\CompiledYamlFile',
+    'filename' => '/home/prestigelabelsco/public_html/user/config/plugins/email.yaml',
+    'modified' => 1562039124,
+    'data' => [
+        'enabled' => true,
+        'from' => 'system-admin@redstarfishwebdesign.com',
+        'from_name' => 'Simple',
+        'to' => 'diome.halcyonwebdesign@gmail.com',
+        'queue' => [
+            'enabled' => false,
+            'flush_frequency' => '* * * * *',
+            'flush_msg_limit' => 10,
+            'flush_time_limit' => 100
+        ],
+        'mailer' => [
+            'engine' => 'sendmail',
+            'smtp' => [
+                'server' => 'localhost',
+                'port' => 25,
+                'encryption' => 'none',
+                'user' => 'system',
+                'password' => 'Password123'
+            ],
+            'sendmail' => [
+                'bin' => '/usr/sbin/sendmail -bs'
+            ]
+        ],
+        'content_type' => 'text/html',
+        'debug' => false
+    ]
+];

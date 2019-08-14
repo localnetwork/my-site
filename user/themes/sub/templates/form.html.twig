@@ -1,0 +1,38 @@
+{% extends 'partials/base.html.twig' %}
+
+{% block content %}
+<section class="block-slider" >
+    <div class="block-wrapper">
+        {% set images = page.media.images %} 
+        {% for img in images %}
+        <div class="item"> 
+            <img width="100%" src="{{ img.cropZoom(10,10).url }}" data-lazy-srcset="{{ img.cropZoom(767,400).url }} 767w, {{ img.cropZoom(991,600).url }} 991w, {{ img.cropZoom(1920,700).url }} 1920w"> 
+        </div>
+        {% endfor %} 
+    </div>
+</section>  
+
+<h1 class="page-header bgc-dark p30 py70-lg px120-lg text-center text-white fs20 fs34-lg fw700 m0">
+    {{ page.header.title }}
+</h1> 
+<div class="o-hidden">
+    <div class="row"> 
+        <div class="col-12 col-lg-6 p30">
+            {% include "forms/form.html.twig" %} 
+        </div>
+        <div class="page-content p30 col-12 col-lg-6" style="background-color:#f5f5f5;">
+            {{ page.content }}
+            
+            
+            {% if page.media[header.location|first.name].url %}
+                <div class="field-location">
+                    <a class="btn bgc-orange text-white text-uppercase fw700 fs18 ls1 py15 px23 btn-default d-inline-block" target="_blank" href="{{ page.media[header.location|first.name].url }}">
+                        <i class="fa fa-map-marker mr-1"></i> View Location
+                    </a>
+                </div>
+            
+            {% endif %}
+        </div>
+    </div> 
+</div>
+{% endblock %}	 

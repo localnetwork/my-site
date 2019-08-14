@@ -1,0 +1,191 @@
+{% set theme_config = attribute(config.themes, config.system.pages.theme) %}
+
+{% set loadCSS = theme_var('loadCSS') ? '1' : '0' %} 
+{% set preloader = theme_var('preloader') ? '1' : '0' %} 
+
+{% set page_class = page_class %} 
+
+
+<!DOCTYPE html>
+<html lang="{{ grav.language.getActive ?: theme_config.default_lang }}">
+<head>
+{% block head %}
+    <meta charset="utf-8" />
+    <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% include 'partials/metadata.html.twig' %}
+     
+    
+    {% set favicon = theme_var(favicon ? 'favicon' : 'favicon') %}
+    
+    {% if favicon %}
+    
+    {% set favicon_file = (favicon|first).name %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('theme://favicon/' ~ favicon_file)  }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('theme://favicon/' ~ favicon_file)  }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('theme://favicon/' ~ favicon_file)  }}">
+    {% else %}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('theme://apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('theme://favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('theme://favicon-16x16.png') }}">
+    {% endif %}
+    
+    
+    
+    <!-- PRELOADING FONTS -->
+    {% include 'partials/misc/preload-fonts.html.twig' %}
+    
+    <!-- END PRELOADING FONTS -->
+   
+    <link rel="canonical" href="{{ page.url(true, true) }}" />
+    
+    {# YOUR CRITICAL CSS HERE #}
+    {% include 'partials/misc/global-critical.html.twig' %}
+    
+    {# YOUR ABOVE THE FOLD PER PAGE #}
+    {% block aboveFold %}
+        {{ aboveFold }}
+    {% endblock %}
+
+
+   
+    
+    
+    {# EXECUTE CSS ASSETS HERE #}
+    
+    {% block stylesheets %}
+        {% if loadCSS == '0' %}
+            {% do assets.addCss('theme://libraries/bootstrap/css/bootstrap.min.css') %}
+            {% do assets.addCss('theme://libraries/font-awesome/css/font-awesome.css') %}
+            {% do assets.addCss('theme://libraries/slick/slick/slick.css' ) %}
+            {% do assets.addCss('theme://libraries/pure-media/css/style.min.css') %}  
+            {% do assets.addCss('theme://css/style.css') %} 
+        {% else %}
+            {% do assets.addCss('theme://libraries/bootstrap/css/bootstrap.min.css', {'group':'assets-css'}) %}
+            {% do assets.addCss('theme://libraries/font-awesome/css/font-awesome.css', {'group':'assets-css'}) %}
+            {% do assets.addCss('theme://libraries/slick/slick/slick.css', {'group':'assets-css'} ) %}
+            {% do assets.addCss('theme://libraries/pure-media/css/style.min.css', {'group':'assets-css'} ) %}
+            {% do assets.addCss('theme://css/style.css', {'group':'assets-css'}) %} 
+        {% endif %}
+    {% endblock %} 
+    
+    {% if loadCSS == '1' %}
+        {{ assets.css('assets-css', {'rel':'preload', 'as':'style', 'onload':'this.rel="stylesheet"'}) }} 
+        <noscript>
+    
+        {{ assets.css('assets-css') }} 
+        
+        </noscript>
+    {% else %}
+        {{ assets.css() }}
+    {% endif %}
+    
+    
+    
+    
+    
+
+{% block javascripts %}
+    {% do assets.addJs('jquery', 101) %}
+    {% do assets.addJs('theme://js/jquery.treemenu.js', {group:'bottom'}) %}
+    {% do assets.addJs('theme://js/site.js', {group:'bottom'}) %}
+{% endblock %}
+
+{% endblock head%}
+</head>
+<body id="body" class="body is-page-loading {{ page.url == "/" ? 'front' : 'not-front'  }} {{ page_class }} {{ page.header.body_classes }} "> 
+
+
+{% if preloader == '1' %}
+<div class="preloader">
+    <span></span> 
+</div>
+
+{% endif %}
+
+{% block header %}
+    <header class="header navbar-light">
+        <nav class="navbar p0 py10-lg px30-lg navbar-expand-md flex-wrap justify-content-between">
+            <div class="navbar-header d-flex flex-wrap align-items-center py15 py0-lg justify-content-center justify-content-between justify-content-md-center">
+                {% include 'partials/misc/logo.html.twig' %}
+            
+                <button class="navbar-toggler x collapsed" type="button" data-toggle="collapse" data-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+             
+            <div class="nav-right"> 
+                {% include 'social.html.twig' %} 
+                
+                {% include 'partials/navigation.html.twig' %} 
+            </div>
+        </nav>
+    </header>
+{% endblock %}
+
+
+{% block body %}
+    <main id="main-content" class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+     
+{% endblock %}
+
+
+
+{% block footer %}
+    <footer class="footer text-center bgc-dark d-block text-white mt30">
+        <section class="block-quote bgc-orange py45">
+            <div class="container">
+                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                    <h2 class="block__title fs20 fs34-md mb15 mb0-sm">
+                        Get a quote for your project
+                    </h2>
+                    <div class="block__rm text-uppercase pl20 pl100-md">
+                        <a class="btn-default d-inline-block text-white fs14 fw700 px29 py13" href="/contact-us">Contact Us Today</a>
+                    </div>
+                </div>
+            </div>
+        </section> 
+        
+        
+        <div class="footer-credits py20">
+            &lt; code / &gt; with <i style="color:red;" class="fa fa-heart fa-pulse"></i> by <a class="fw700" href="http://halcyonwebdesign.com.ph" target="_blank" style="color: #00ace8;">Halcyon Web Design</a> 
+        </div>
+    </footer>
+{% endblock %}
+
+
+{% if loadCSS == '1' %}
+<script>
+    !function(t){"use strict";t.loadCSS||(t.loadCSS=function(){});var e=loadCSS.relpreload={};if(e.support=function(){var e;try{e=t.document.createElement("link").relList.supports("preload")}catch(t){e=!1}return function(){return e}}(),e.bindMediaToggle=function(t){var e=t.media||"all";function a(){t.addEventListener?t.removeEventListener("load",a):t.attachEvent&&t.detachEvent("onload",a),t.setAttribute("onload",null),t.media=e}t.addEventListener?t.addEventListener("load",a):t.attachEvent&&t.attachEvent("onload",a),setTimeout(function(){t.rel="stylesheet",t.media="only x"}),setTimeout(a,3e3)},e.poly=function(){if(!e.support())for(var a=t.document.getElementsByTagName("link"),n=0;n<a.length;n++){var o=a[n];"preload"!==o.rel||"style"!==o.getAttribute("as")||o.getAttribute("data-loadcss")||(o.setAttribute("data-loadcss",!0),e.bindMediaToggle(o))}},!e.support()){e.poly();var a=t.setInterval(e.poly,500);t.addEventListener?t.addEventListener("load",function(){e.poly(),t.clearInterval(a)}):t.attachEvent&&t.attachEvent("onload",function(){e.poly(),t.clearInterval(a)})}"undefined"!=typeof exports?exports.loadCSS=loadCSS:t.loadCSS=loadCSS}("undefined"!=typeof global?global:this);
+</script> 
+
+{% endif %}
+
+{% include 'partials/misc/backtop.html.twig' %}
+
+
+
+{% block bottom %}
+    {% do assets.addJs('jquery', 100) %}
+    {% do assets.addJs('theme://libraries/bootstrap_addons/popper.min.js',{'priority':99, 'loading':'defer'}) %}
+    {% do assets.addJs('theme://libraries/bootstrap/js/bootstrap.min.js',{'priority':99, 'loading':'defer'}) %} 
+    {% do assets.addJs('theme://libraries/slick/slick/slick.js',{'priority':99, 'loading':'defer'}) %}  
+    {% do assets.addJs('theme://libraries/jqueryvalidation/jquery.validate.min.js',{'priority':99, 'loading':'defer'}) %}  
+    {% do assets.addJs('theme://libraries/pure-media/progressive-image-loading.js',{'priority':99, 'loading':'defer'}) %}  
+    {% do assets.addJs('theme://libraries/lazysizes/lazysizes.min.js',{'priority':99, 'loading':'defer'}) %}  
+    {% do assets.addJs('theme://libraries/jquery-match-height/jquery.matchHeight.js',{'priority':99, 'loading':'defer'}) %}  
+    {% do assets.addJs('theme://js/script.js', {'priority':98, 'loading':'defer'}) %}
+    
+     
+{% endblock %} 
+
+{# EXECUTE JS HERE #}
+{{ assets.js|raw }}
+
+</body>

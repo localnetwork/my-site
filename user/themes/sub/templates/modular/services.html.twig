@@ -1,0 +1,101 @@
+<section class="block-services py50 o-hidden">
+    <div class="container">
+        <h2 class="block__title text-center fs25 fs40-md mb40 text-uppercase">
+            {{ page.title }}
+        </h2>
+        
+        
+        <div class="item-list rn-20">
+            {% for child in page.find('/services').children %}
+            
+    
+            
+            {{ child.media[header.slider.name] }}
+            
+            
+            
+            {% set featured = child.header.featured ? '1' : '0' %} 
+            {% set childImage = child.media.images|first %} 
+            
+            
+            
+            {% if featured == 1 %} 
+                <div class="item col-12 col-sm-6 col-lg-4 px20 mb50">
+                    <div class="item-wrapper text-center">
+                        
+                        <h3 class="item__title matchHeight fw700 fs18 fs25-md mb20"><a href="{{ child.url}}">{{ child.title }}</a></h3>
+                            
+                            <div class="item__image">
+                                {% set imgCheck = child.header.featured_image ? '1' : '0' %}
+                                
+                                
+                                {% set a = child.header.slider|first.name %}
+                                
+                                
+                                {% if imgCheck == 1%}
+                                    {% for imagesuploaded in child.header.featured_image %}
+                                 
+                                 
+                                  
+                                    <figure class="graf-figure">
+                                        <a href="{{ child.url}}">
+                                      <div class="aspectRatioPlaceholder">
+                                        <div class="aspectRatioPlaceholder-fill"></div>
+                                        <div class="progressiveMedia lazyload" data-width="210" data-height="210">
+                                          <img class="progressiveMedia-thumbnail" src="{{ child.media[imagesuploaded.name].cropZoom(10,10).url }}" width="10" height="10" />
+                                          <canvas class="progressiveMedia-canvas"></canvas>
+                                          
+                                          <img class="progressiveMedia-image lazyload" data-srcset="{{ child.media[imagesuploaded.name].cropZoom(300,300).url }} 1920w" width="210" height="210" />
+                                        </div>
+                                      </div>
+                                      </a>
+                                    </figure>
+                                 {% endfor %}
+                                
+                                {% else %}
+                                    <figure class="graf-figure">
+                                        <a href="{{ child.url}}">
+                                      <div class="aspectRatioPlaceholder">
+                                        <div class="aspectRatioPlaceholder-fill"></div>
+                                        <div class="progressiveMedia lazyload" data-width="210" data-height="210">
+                                          <img class="progressiveMedia-thumbnail" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" width="10" height="10" />
+                                          <canvas class="progressiveMedia-canvas"></canvas>
+                                          
+                                          <img class="progressiveMedia-image lazyload" data-srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw== 1920w" width="210" height="210" />
+                                        </div>
+                                      </div>
+                                      </a>
+                                    </figure> 
+                                {% endif %}
+                                 
+                                
+                                
+                                <img src="{{ child.media[header.featured_image|first.name] }}">  
+                                
+                                
+                                 
+                                
+                                    
+                                
+                            </div>
+                            
+                            
+                                
+                            <div class="item__description text-center py20 lh30 fs15 fs16-md"> 
+                                {{ child.header.shortdesc|truncate(150)  }}
+                            </div>
+                            
+                            <div class="item__rm text-center">
+                                <a class="d-inline-block py13 px29 fs14 fw700 text-white bgc-orange btn-default text-uppercase" href="{{ child.url}}">Learn More</a>
+                            </div>
+                    </div>
+                    </div>
+            {% endif %}
+            
+            
+            
+            
+        {% endfor %}   
+        </div>
+    </div>
+</section> 

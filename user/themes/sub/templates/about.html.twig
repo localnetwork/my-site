@@ -1,0 +1,24 @@
+{% extends 'partials/base.html.twig' %}
+
+
+{% block content %}
+<section class="block-slider" >
+    <div class="block-wrapper">
+        {% set images = page.media.images %} 
+        {% for img in images %}
+        <div class="item"> 
+            <img width="100%" src="{{ img.cropZoom(10,10).url }}" data-lazy-srcset="{{ img.cropZoom(767,400).url }} 767w, {{ img.cropZoom(991,600).url }} 991w, {{ img.cropZoom(1920,700).url }} 1920w"> 
+        </div>
+        {% endfor %} 
+    </div>
+</section> 
+
+
+<h1 class="page-header m0 text-center py50 px100 bgc-dark text-white text-uppercase fw700">
+    {{ page.header.title }}
+</h1>
+<div class="page-content p30">
+    {{ page.content }}     
+</div>
+
+{% endblock %}

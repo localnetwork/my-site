@@ -1,0 +1,18 @@
+{#<div class="navbar-header">#}
+{#    <a class="navbar-brand site-name d-flex flex-column flex-wrap" href="{{ base_url == '' ? '/' : base_url }}">#}
+{#            <img class="lazyload" src="{{ url('theme://misc/logo.png') }}" title="{{ config.site.title }}" />#}
+{#    </a>#}
+{#</div>#}
+
+
+{% set logo = theme_var(mobile ? 'logo_mobile' : 'logo') %}
+
+<a href="{{ home_url }}" class="navbar-brand mr-10">
+{% if logo %}
+  {% set logo_file = (logo|first).name %}
+  <img src="{{ url('theme://logos/' ~ logo_file)  }}" alt="{{ config.site.title }}" />
+{% else %}
+  {#{% include('@images/grav-logo.svg') %}#}
+  <img src="{{ url('theme://logo.png') }}" alt="{{ config.site.title }}" />
+{% endif %}
+</a>

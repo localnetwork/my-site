@@ -1,0 +1,10 @@
+'Site Admin':
+  groupname: 'Site Admin'
+  icon: user-secret
+  access:
+    site:
+      login: 'true'
+    admin:
+      login: 'true'
+      pages: 'true'
+    admin-addon-user-manager: {  }

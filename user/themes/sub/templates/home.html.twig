@@ -1,0 +1,25 @@
+{% extends 'partials/base.html.twig' %}
+
+
+{% set page_class = "page-home" %}
+
+{% block content %}
+
+    {{ page.content }}
+    
+    <section id="block-articles" class="block block-articles">
+        {% set countNotEmpty = 0 %}
+        
+        {% for child in page.find('/articles').children %}
+            {% set countNotEmpty = countNotEmpty + 1 %}
+            
+            
+            <h2 class="item-title d-flex align-items-center">
+                <span class="if-count d-none d-md-block mr-1">{{ countNotEmpty }}:</span>
+                <a href="{{ child.url }}"> {{ child.title }}</a>
+            </h2>
+        {% endfor %}
+    </section>
+    
+    
+{% endblock %}

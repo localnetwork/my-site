@@ -1,0 +1,32 @@
+// All your variable will be placed here.
+$min-sm: 576px;
+$min-md: 768px;
+$min-lg: 992px;
+$min-xl: 1200px;
+
+$max-sm: 575px; 
+$max-md: 767px;
+$max-lg: 991px;
+$max-xl: 1199px;
+
+
+
+$min-breakpoints: (
+// 'xs' : '0px',
+'sm' : $min-sm,
+'md' : $min-md,
+'lg' : $min-lg,
+'xl' : $min-xl,
+);
+
+$white : #ffffff;
+$lightgrey: #eeeeee;
+$lightergrey: #888888;
+$black: #000000;
+$grey: #222222;
+$dark: #455560; 
+$darkgrey: #515151;
+$blue: #2474A9;
+$black__off : #333333;
+$orange: #e55c22; 
+$yellow: #ffb822;
